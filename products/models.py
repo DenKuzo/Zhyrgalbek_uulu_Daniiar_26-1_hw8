@@ -13,11 +13,3 @@ class Products(models.Model):
 
 
 
-
-
-
-
-
-
-
-

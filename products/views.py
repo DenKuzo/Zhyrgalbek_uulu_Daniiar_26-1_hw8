@@ -23,4 +23,3 @@ def products_view(request):
 
 
 
-

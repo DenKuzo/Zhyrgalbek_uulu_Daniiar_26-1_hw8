@@ -24,6 +24,3 @@ urlpatterns = [
     path('products/', products_view)
 ]
 
-
-
-
