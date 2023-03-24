@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from products.models import Products
+from products.models import Products, Comment
 
 
 # Create your views here.
@@ -18,8 +18,13 @@ def products_view(request):
         }
         return render(request, 'products/products.html', context=context)
 
+def product_detail_view(request, id):
+    if request.method == 'GET':
+        product = Products.objects.get(id=id)
 
+        context = {
+            'product': product,
+            'comments': product.comment_set.all()
+        }
 
-
-
-
+        return render(request, 'products/detail.html', context=context)
