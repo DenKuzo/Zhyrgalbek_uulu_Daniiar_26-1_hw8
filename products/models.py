@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Products(models.Model):
-    image = models.ImageField(blank=True , null= True)
+    image = models.ImageField(blank=True, null=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     rate = models.FloatField(default=0.0)
@@ -14,7 +14,7 @@ class Products(models.Model):
     def __str__(self):
         return self.title
 
-class Comment(models.Model):
+class Review(models.Model):
     text = models.CharField(max_length=255)
     product = models.ForeignKey(Products,on_delete=models.CASCADE)
 

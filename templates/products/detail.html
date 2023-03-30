@@ -16,10 +16,12 @@
             display: flex;
             justify-content: space-between;
         }
-        .comments {
-    margin-top: 30px;
-}
-.comment_block {
+        .reviews {
+            margin-top: 30px;
+        }
+
+
+.review_block {
     background: #242b2e;
     color: #fff;
     padding: 10px;
@@ -30,7 +32,7 @@
     <div class="product_block">
         <div class="image">
             {% if product.image %}
-                <img src="/media/{{ product.image }}" alt="">
+                <img  src="/media/{{ product.image }}" alt="">
             {% else %}
                 <img src="{% static 'shop.png' %} }}">
             {% endif %}
@@ -45,10 +47,18 @@
             </div>
         </div>
 
-        <div class="comments">
-            {% for comment in comments %}
-                <div class="comment_block">
-                    <h5>{{ comment.text }}</h5>
+        <div class="create_review/">
+            <form action="/products/{{ product.id }}/" method="post">
+                {% csrf_token %}
+                {{ form }}
+            <input type="submit" value="Add review">
+            </form>
+        </div>
+
+        <div class="reviews">
+            {% for review in reviews %}
+                <div class="review_block">
+                    <h5>{{ review.text }}</h5>
                 </div>
             {% endfor %}
         </div>

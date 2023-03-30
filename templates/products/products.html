@@ -9,21 +9,43 @@
             margin-left: 10%;
             margin-top: 20px;
             flex-wrap: wrap;
+            border-radius: 50px;
         }
         .image > img {
-            width: 75%;
+            width: 69%;
         }
+        .card {
+            width: max-content;
+            height: max-content;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .card-title {
+            margin-top: 10px;
+            color: darkmagenta;
+        }
+         .img img {
+                cursor: pointer;
+             transition: 3s;
+             width: 150px;
+             height: 150px;
+            }
+         .img img:hover {
+             transform: scale(1.4) rotate(-360deg) skew(-25deg, -10deg) translate(10px, 25px);
+         }
     </style>
     <div class="products">
         {% for product in products %}
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <div class="image">
-                        <img src="/media/{{ product.image }}/" alt="">
+                        <a class="img" href="/products/{{ product.id }}">
+                            <img  src="/media/{{ product.image }}/" alt="">
+                        </a>
                     </div>
                     <h5 class="card-title">{{ product.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ product.rate }}</h6>
-                    <a href="/products/{{ product.id }}" class="card-link">More</a>
+                    <a href="/products/{{ product.id }}" class="card-link"></a>
                 </div>
             </div>
         {% endfor %}
