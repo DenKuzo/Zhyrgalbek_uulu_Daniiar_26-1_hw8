@@ -35,17 +35,20 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/products/">IPHONE</a>
         </li>
+          {% if user.is_anonymous %}
         <li class="nav-item">
-          <a class="nav-link" href="/#/">MACK</a>
+          <a class="nav-link" href="/users/login/">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">REVIEWS</a>
+          <a class="nav-link" href="/users/register">Register</a>
         </li>
+          {% else %}
           <li class="nav-item">
           <a class="nav-link" href="/products/create/">CREATE PRODUCTS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">SUPPORT</a>
+          <a class="nav-link disabled" href="/users/logout">Logout</a>
+            {% endif %}
         </li>
       </ul>
     </div>z
