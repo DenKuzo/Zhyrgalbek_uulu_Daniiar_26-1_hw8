@@ -21,38 +21,42 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div  class="container-fluid">
-    <a style="background: darkmagenta" class="navbar-brand" href="/" >
-        <img style="
+    <div class="container-fluid">
+        <a style="background: darkmagenta" class="navbar-brand" href="/">
+            <img style="
         max-width: 125px; border-radius: 10px" src="{% static 'shop.png' %}" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/products/">IPHONE</a>
-        </li>
-          {% if user.is_anonymous %}
-        <li class="nav-item">
-          <a class="nav-link" href="/users/login/">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/register">Register</a>
-        </li>
-          {% else %}
-          <li class="nav-item">
-          <a class="nav-link" href="/products/create/">CREATE PRODUCTS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="/users/logout">Logout</a>
-            {% endif %}
-        </li>
-      </ul>
-    </div>z
-  </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/products/">IPHONE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/">MACK</a>
+                </li>
+                {% if user.is_anonymous %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login/">LOGIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/register/">REGISTER</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/create/">CREATE PRODUCTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/logout/">LOGOUT</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        z
+    </div>
 </nav>
 {% block content %}
 

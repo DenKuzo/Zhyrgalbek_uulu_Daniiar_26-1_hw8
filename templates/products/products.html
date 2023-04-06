@@ -11,36 +11,46 @@
             flex-wrap: wrap;
             border-radius: 50px;
         }
+
         .image > img {
             width: 69%;
         }
+
         .card {
             width: max-content;
             height: max-content;
             padding: 10px;
             border-radius: 20px;
         }
+
         .card-title {
             margin-top: 10px;
             color: darkmagenta;
         }
-         .img img {
-                cursor: pointer;
-             transition: 1s;
-             width: 150px;
-             height: 150px;
-            }
-         .img img:hover {
-             transform: scale(1.4);
-         }
+
+        .img img {
+            cursor: pointer;
+            transition: 1s;
+            width: 150px;
+            height: 150px;
+        }
+
+        .img img:hover {
+            transform: scale(1.4);
+        }
     </style>
+
+    <form action="/products/" method="get">
+        <input type="text" name="search">
+        <input type="submit" name="Search">
+    </form>
     <div class="products">
         {% for product in products %}
             <div class="card">
                 <div class="card-body">
                     <div class="image">
                         <a class="img" href="/products/{{ product.id }}">
-                            <img  src="/media/{{ product.image }}/" alt="">
+                            <img src="/media/{{ product.image }}/" alt="">
                         </a>
                     </div>
                     <h5 class="card-title">{{ product.title }}</h5>
@@ -49,6 +59,12 @@
                 </div>
             </div>
         {% endfor %}
-
+    </div>
+    <div class="pages">
+        {% for page in pages %}
+            <a href="/products/?page={{ page }}">
+                <button>{{ page }}</button>
+            </a>
+        {% endfor %}
     </div>
 {% endblock %}

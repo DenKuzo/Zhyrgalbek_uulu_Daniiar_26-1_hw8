@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from users.forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth import authenticate, login, logout
+
+
 # Create your views here.
 
 def register_view(request):
@@ -10,10 +12,10 @@ def register_view(request):
             'form': RegisterForm
         }
 
-        return render(request, 'users/register.html' ,context=context)
+        return render(request, 'users/register.html', context=context)
 
     if request.method == 'POST':
-        form =RegisterForm(data=request.POST)
+        form = RegisterForm(data=request.POST)
 
         if form.is_valid():
             if form.cleaned_data.get('password1') == form.cleaned_data.get('password2'):
@@ -21,35 +23,38 @@ def register_view(request):
                     username=form.cleaned_data.get('username'),
                     password=form.cleaned_data.get('password1')
 
-            )
+                )
                 return redirect('/users/login/')
             else:
-                form.add_error('password1' , "НЕ верный пароль")
+                form.add_error('password1', "НЕ верный пароль")
 
-        return render(request,'users/register.html',context={'form' : form})
+        return render(request, 'users/register.html', context={'form': form})
 
 
 def login_view(request):
     if request.method == "GET":
-        context ={
-            'form':LoginForm
+        context = {
+            'form': LoginForm
         }
 
-        return render(request , 'users/login.html', context=context)
+        return render(request, 'users/login.html', context=context)
+
     if request.method == "POST":
-        form = LoginForm(data = request.POST)
+        form = LoginForm(data=request.POST)
 
         if form.is_valid():
-            user = authenticate(request, username =form.cleaned_data.get('username'),
-                                         password = form.cleaned_data.get('password'))
 
-            if user :
+            user = authenticate(request, username=form.cleaned_data.get('username'),
+                                password=form.cleaned_data.get('password'))
+
+            if user:
                 login(request, user)
                 return redirect('/products/')
             else:
                 form.add_error('username', 'authenticate error!!!')
 
-        return render(request , 'users/login.html', context={'form' : form})
+        return render(request, 'users/login.html', context={'form': form})
+
 
 def logout_view(request):
     logout(request)
