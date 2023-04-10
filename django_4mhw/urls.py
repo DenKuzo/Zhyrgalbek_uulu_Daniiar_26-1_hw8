@@ -1,4 +1,4 @@
-"""Shop4m URL Configuration
+"""Shop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -13,23 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
-from products.views import main_view, products_view, product_detail_view, product_create_view
-from django_4mhw import settings
+from django.urls import path, include
+from users.urls import path
+from users.views import RegisterCBV,LoginCBV,LogoutCBV
+from products.views import MainPageCBV,ProductCBV , ProductDetailCBV, CreateProductCBV
+from django_4mhw.settings import MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
-from users.views import register_view, login_view, logout_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_view),
-    path('products/', products_view),
-    path('products/<int:id>/', product_detail_view),
-    path('products/create/', product_create_view),
+    path('', MainPageCBV.as_view()),
+    path('products/',ProductCBV.as_view()),
+    path('products/<int:id>/', ProductDetailCBV.as_view()),
+    path('products/create/',CreateProductCBV.as_view()),
 
-    path('users/register/', register_view),
-    path('users/login/', login_view),
-    path('users/logout/', logout_view)
-]
+    path("users/", include('users.urls')),
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(MEDIA_URL, document_root=MEDIA_ROOT)
